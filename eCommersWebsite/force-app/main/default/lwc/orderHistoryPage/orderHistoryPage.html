@@ -1,0 +1,40 @@
+<template>
+    <div class="slds-grid slds-gutters" style="margin-top:1%; background-color: black;">
+        <h1 style="margin-bottom: 1%;margin-top: 0.2%; margin-left: 40%; font-size: x-large; color :white; text-align: center;">Order History</h1>
+   </div>
+   <div class="slds-grid slds-gutters" style="background-color: rgb(245, 240, 240);">
+    <p style="font-size: xx-large; text-align:center">This is Order History Data</p>
+   <!-- <table style="margin-top: 1%;">
+        <tr>
+          <th>Order Number</th>
+          <th>Order Date</th>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+        </table>
+    <template for:each={orderHistory.data} for:item="orHistory">
+        <p key={orHistory.Id}>
+        <lightning-badge label={orHistory.OrderNumber} style="margin-left: 15% ;margin-top: 5%;  height: 40% ; width: 70%;"></lightning-badge>
+        <lightning-badge label={orHistory.EffectiveDate} style="margin-left: 15%; background-color: white; width : 70%; font-size: medium; text-align: center;"></lightning-badge>
+        <lightning-badge label={orHistory.TotalAmount} style="margin-left: 15%; background-color: white; width : 70%; font-size: medium; text-align: center;"></lightning-badge>
+        <lightning-badge label={orHistory.Status} style="margin-left: 15%; background-color: white; width : 70%; font-size: medium; text-align: center;"></lightning-badge>
+        </p>
+    </template>
+</div>
+<div class="slds-grid slds-gutters" style="background-color: rgb(245, 240, 240);">
+    <table>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Amount</th>
+    </tr>
+    </table>
+    <template for:each={cartData.data} for:item="cart">
+        <p key={cart.Id}>
+        <lightning-badge label={cart.cart.PricebookEntryId.Product2Id.Name} style="margin-left: 15%; background-color: white; width : 70%; font-size: medium; text-align: center;"></lightning-badge>
+        <lightning-badge label={cart.Quantity} style="margin-left: 15%; background-color: white; width : 70%; font-size: medium; text-align: center;"></lightning-badge>
+        <lightning-badge label={cart.TotalPrice} style="margin-left: 15%; background-color: white; width : 70%; font-size: medium; text-align: center;"></lightning-badge>
+        </p>
+    </template>-->
+    </div>
+</template>

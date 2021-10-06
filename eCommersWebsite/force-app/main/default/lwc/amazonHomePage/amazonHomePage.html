@@ -1,0 +1,61 @@
+<template>
+    <div class="slds-grid slds-gutters" style="background-color: black;">
+        <img src={logo} style="height: 3% ; width:5%;">
+        <h1 style="margin-top: 1%; margin-left: 31%; font-size: x-large; color :white;">Ecommerce Store - Amazon</h1><c-profile-Page  style="border: none; color: White; font-size: small; margin-bottom: 0.5%;margin-top: 1%; margin-left: 27.5%;"></c-profile-Page>
+    </div>
+        <div class="slds-grid slds-gutters" style="background-color: black;">
+            <lightning-button variant="inverse" style="margin-left: 84%; margin-bottom: 0.5%; margin-right: 4%; width : 70%" label={clickGoToCart} title="Go To CartSummary" class="slds-m-right_x-small" onclick={handleCartClick} ></lightning-button>
+        </div>
+        <div class="slds-grid slds-gutters" style="background-color: black;">
+            <lightning-button variant="inverse" style="margin-left: 84%; margin-bottom: 0.5%; margin-right: 4%; width : 70%" label={clickOrderHistory} title="Go To OrderHistory" class="slds-m-right_x-small" onclick={handleOrderHistoryClick} ></lightning-button>
+        </div>
+    <div class="slds-grid slds-gutters" style="background-color: black;">
+        <lightning-input type="text"  class="slds-col slds-size_5-of-12" style=" margin-top: 1.5%; margin-bottom: 1% ; margin-left: 5%;"
+        value={strSearchProdName}
+        onchange={handleSearch} placeholder="Search Product"> 
+        </lightning-input>
+        <select class="slds-select slds-grid" name = "optionSelect" onchange={handlesorting} style="margin-top: 2.9%; margin-bottom: 1%; margin-right: 1% ;">
+            <option value="" >Select Price for sorting...</option>
+            <option value="Low" >High to Low</option>
+            <option value="High" >Low to High</option>
+        </select> 
+    </div>
+    <template if:false={cartVisible}  if:true={searchData} style="background-color: rgb(245, 240, 240);" class="slds-gutters">
+    <template if:false={OrderVisible}  if:true={searchData} style="background-color: rgb(245, 240, 240);" class="slds-gutters">
+        <div if:true={searchData}  class="slds-grid slds-gutters slds-col" style="background-color: rgb(245, 240, 240);">
+            <template for:each={searchData} for:item="search">
+                <p key={search.Id}>
+                <img src={search.Display_Image__c} style="margin-left: 15% ;margin-top: 5%;  height: 40% ; width: 70%;"/>
+                <lightning-badge label={search.Name} style="margin-left: 15%; background-color: white; width : 70%; font-size: medium; text-align: center;"></lightning-badge>
+                <lightning-badge label={search.Price__c} style="margin-left: 15%; background-color: white; width : 70%; font-size: medium; text-align: center;"></lightning-badge>
+                <lightning-badge label={search.Description} style="margin-left: 15%; background-color: white; width : 70%; font-size: medium; text-align: center;"></lightning-badge>
+                <lightning-button style="margin-left: 14%;  margin-bottom: 1%; width : 70%;" variant="brand"  data-index={search.Id} label="Add to cart" onclick={handleAddToCart}></lightning-button>
+                </p>
+            </template>
+        </div>
+        
+        <div if:false={searchData} if:true={visibleData} class="slds-grid slds-gutters slds-col" style="background-color: rgb(245, 240, 240);">
+            <template for:each={visibleData} for:item="visible">
+                <p key={visible.Id}>
+                <img src={visible.Display_Image__c} style="margin-left: 15% ;margin-top: 5%;  height: 40% ; width: 70%;"/>
+                <lightning-badge label={visible.Name} style="margin-left: 15%; background-color: white; width : 70%; font-size: medium; text-align: center;"></lightning-badge>
+                <lightning-badge label={visible.Price__c} style="margin-left: 15%; background-color: white; width : 70%; font-size: medium; text-align: center;"></lightning-badge>
+                <lightning-badge label={visible.Description} style="margin-left: 15%; background-color: white; width : 70%; font-size: medium; text-align: center;"></lightning-badge>
+                <lightning-button style="margin-left: 30%;  margin-bottom: 1%; width : 100%;"  variant="brand" data-index={visible.Id} label="Add to cart" onclick={handleAddToCart}></lightning-button>                </p>
+            </template>
+        </div>
+        <div style="background-color: rgb(245, 240, 240);">
+            <lightning-button variant="brand" style="margin-left: 70%;  margin-bottom: 3%;" label={clickCart} title="Go To Cart" class="slds-m-right_x-small" onclick={handleCartClick} ></lightning-button>
+            <c-pagination records={product.data} onupdate={updateHandler}></c-pagination>
+        </div>
+        </template>
+    </template>
+    <template if:true={cartVisible} style=" width:50%; height:50%">
+        <c-cart-summary></c-cart-summary>
+    </template>
+    <template if:true={OrderVisible} style=" width:50%; height:50%">
+        <c-order-history-page></c-order-history-page>
+    </template>
+
+    
+</template>
